@@ -183,7 +183,58 @@ html, body, [class*="css"] {{
     margin-bottom: 0px;
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
+}}
+.es-header-left {{
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    flex: 1;
+    min-width: 320px;
+}}
+.es-system-status-box {{
+    background: {PALETTE["bg"]};
+    border: 1.5px solid {PALETTE["border"]};
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    min-width: 300px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}}
+.es-system-status-title {{
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: {PALETTE["text_muted"]};
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}}
+.es-system-status-line {{
+    margin: 4px 0;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}}
+.es-system-status-active {{
+    color: {PALETTE["navy"]};
+    font-weight: 600;
+}}
+.es-system-status-planned {{
+    color: {PALETTE["text_muted"]};
+    font-weight: 500;
+}}
+.es-system-status-footer {{
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed {PALETTE["border"]};
+    font-size: 0.68rem;
+    color: {PALETTE["teal"]};
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }}
 .es-header-mark {{
     width: 4px;
@@ -826,21 +877,28 @@ if "nav_page" not in st.session_state:
 # ==========================================================================
 st.markdown("""
 <div class="es-header">
-  <div class="es-header-mark"></div>
-  <div>
-    <p class="es-title">Echo Shield</p>
-    <p class="es-subtitle">AI/ML-Enabled Adaptive Noise Cancellation · Defence Vehicles</p>
-    <p class="es-tagline">DRDO · SIH26052 · Smart Vehicles · SILENCE THE NOISE. AMPLIFY THE MISSION.</p>
-    <div class="es-badge-row">
-      <span class="es-badge es-badge-blue">SIH 2026</span>
-      <span class="es-badge es-badge-blue">DRDO</span>
-      <span class="es-badge es-badge-blue">PS ID: SIH26052</span>
-      <span class="es-badge es-badge-slate">Software Prototype</span>
-      <span class="es-badge es-badge-slate">15,391 Audio Files</span>
-      <span class="es-badge es-badge-purple">DT Classifier · 98.97% Acc</span>
-      <span class="es-badge es-badge-teal">NLMS · 31.58 dB</span>
-    </div>
-  </div>
+<div class="es-header-left">
+<div class="es-header-mark"></div>
+<div>
+<p class="es-title">Echo Shield</p>
+<p class="es-subtitle">AI/ML-Enabled Adaptive Noise Cancellation · Defence Vehicles</p>
+<p class="es-tagline">DRDO · SIH26052 · Smart Vehicles · SILENCE THE NOISE. AMPLIFY THE MISSION.</p>
+<div class="es-badge-row">
+<span class="es-badge es-badge-blue">SIH 2026</span>
+<span class="es-badge es-badge-blue">DRDO</span>
+<span class="es-badge es-badge-blue">PS ID: SIH26052</span>
+<span class="es-badge es-badge-slate">15,391 Audio Files</span>
+<span class="es-badge es-badge-purple">DT Classifier · 98.97% Acc</span>
+<span class="es-badge es-badge-teal">NLMS · 31.58 dB</span>
+</div>
+</div>
+</div>
+<div class="es-system-status-box">
+<div class="es-system-status-title">SYSTEM STATUS</div>
+<div class="es-system-status-line es-system-status-active"><span style="color:#0D9488; font-size: 0.82rem;">●</span> <span><strong>Software Prototype</strong> · Active</span></div>
+<div class="es-system-status-line es-system-status-planned"><span style="color:#94A3B8; font-size: 0.82rem;">○</span> <span><strong>FPGA + Jetson Hardware Integration</strong> · Planned</span></div>
+<div class="es-system-status-footer">Software validation complete · Hardware deployment next</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -1093,24 +1151,27 @@ with st.sidebar:
     st.markdown(f'<hr style="border-color:{PALETTE["border"]}; margin: 16px 0;">', unsafe_allow_html=True)
 
     # System status indicators
+    c_muted = PALETTE['text_muted']
+    c_navy = PALETTE['navy']
+    c_teal = PALETTE['teal']
+    c_border = PALETTE['border']
+
     st.markdown(f"""
-    <div style="margin-top: 4px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-                  color: {PALETTE['text_muted']}; text-transform: uppercase;
-                  font-family: 'JetBrains Mono', monospace; margin-bottom: 2px;">System Status</div>
-      <div style="font-size: 0.8rem; color: {PALETTE['text_dim']}; display: flex; align-items: center; gap: 6px;">
-        <span class="status-dot-active"></span>
-        <span>Software Prototype · Active</span>
-      </div>
-      <div style="font-size: 0.8rem; color: {PALETTE['text_muted']}; display: flex; align-items: center; gap: 6px;">
-        <span class="status-dot-offline"></span>
-        <span>ARM Deployment · Pending</span>
-      </div>
-      <div style="font-size: 0.78rem; color: {PALETTE['text_muted']}; margin-top: 4px; font-style: italic;">
-        Fully local · No external network calls
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
+<div style="margin-top: 4px; display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace;">
+<div style="font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; color: {c_muted}; text-transform: uppercase; margin-bottom: 2px;">SYSTEM STATUS</div>
+<div style="font-size: 0.78rem; color: {c_navy}; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+<span style="color: {c_teal}; font-size: 0.85rem;">●</span>
+<span>Software Prototype · Active</span>
+</div>
+<div style="font-size: 0.78rem; color: {c_muted}; display: flex; align-items: center; gap: 6px;">
+<span style="color: #94A3B8; font-size: 0.85rem;">○</span>
+<span>FPGA + Jetson Hardware Integration · Planned</span>
+</div>
+<div style="font-size: 0.72rem; color: {c_muted}; margin-top: 4px; padding-top: 6px; border-top: 1px dashed {c_border}; line-height: 1.45;">
+Software validation complete · Hardware deployment next
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 # --------------------------------------------------------------------------
 # Load Model

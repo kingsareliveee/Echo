@@ -3,6 +3,17 @@
 > **Theme:** Smart Vehicles | **Category:** Hardware & Embedded System | **Agency:** DRDO / Ministry of Defence  
 > **Project Title:** AI/ML-Enabled Adaptive Noise Cancellation (ANC) & Speech Enhancement for Defence Vehicles
 
+```text
+================================================================================
+SYSTEM STATUS
+
+● Software Prototype · Active
+○ FPGA + Jetson Hardware Integration · Planned
+
+Software validation complete · Hardware deployment next
+================================================================================
+```
+
 ---
 
 ## 📌 Index / Table of Contents
