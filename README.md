@@ -5,6 +5,10 @@
 **Category:** Hardware  
 **Team:** Echo Shield  
 
+> 📢 **SIH 2026 EVALUATION & PRESENTATION GUIDE:**  
+> For the complete presentation pitch, technical Q&A defense answers, FPGA+Jetson dual-compute explanation, and dashboard output walkthrough, see:  
+> 🔗 **[SIH 2026 Master Pitch & Defense Guide](SIH_PITCH_AND_PROJECT_GUIDE.md)**
+
 ---
 
 ## Step 01: Loading & Inspecting WAV Audio
