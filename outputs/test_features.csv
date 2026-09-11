@@ -1,0 +1,9 @@
+feature,value
+RMS Energy,23169.308246
+Zero Crossing Rate,0.019944
+Spectral Centroid (Hz),443.72
+Spectral Rolloff (Hz),440.00
+Band Energy (0-500 Hz),32766.556303
+Band Energy (500-2000 Hz),1.017283
+Band Energy (2000-5000 Hz),1.772997
+Band Energy (5000-10000 Hz),2.645664

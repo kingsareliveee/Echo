@@ -1,0 +1,4 @@
+split,recordings_all,windows_all,stationary_all,non_stationary_all,impulsive_all,recordings_core_proxy,windows_core_proxy,stationary_core_proxy,non_stationary_core_proxy,impulsive_core_proxy,windows_core,windows_proxy,windows_environmental
+train,422,42930,16631,14408,11891,333,34119,10691,14408,9020,6597,27522,8811
+val,90,8910,3564,2970,2376,77,7623,2871,2970,1782,1683,5940,1287
+test,91,9009,3663,2970,2376,73,7227,2376,2970,1881,1089,6138,1782

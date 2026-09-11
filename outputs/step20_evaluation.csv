@@ -1,0 +1,9 @@
+module,metric,value,type,notes
+ML Noise Classifier (Decision Tree),Classification Accuracy (Held-out Test Split),98.97%,MODEL TEST,Evaluated on 290 stratified held-out 100ms test windows
+ML Noise Classifier (Decision Tree),Macro F1-Score,0.97,MODEL TEST,"Balanced across tank (0.93), heli (1.00), gun_fight (0.99)"
+DSP Adaptive Filter (Standard LMS),RMS Noise Reduction (tank.wav),20.65 dB,MEASURED SOFTWARE EXPERIMENT,"32 taps, mu=0.005, sample-by-sample loop"
+DSP Adaptive Filter (Normalized LMS),RMS Noise Reduction (tank.wav),31.58 dB,MEASURED SOFTWARE EXPERIMENT,"32 taps, mu_norm=0.5, epsilon=1e-8"
+Active Noise Cancellation (FxLMS),Simulated Acoustic Error Reduction (tank.wav),11.89 dB,SIMULATION,Offline simulation using 12-tap synthetic S(z) secondary path
+Speech Path (Wavelet Denoising),"Signal RMS Attenuation (db4, Level 5)",0.02 dB,MEASURED SOFTWARE EXPERIMENT,Soft-thresholding on detail sub-bands (DWT/IDWT)
+Embedded Hardware FPGA Processing,Physical Latency & Power Consumption,N/A,NOT MEASURED,Physical FPGA synthesis & RTL execution planned for hardware phase
+Physical Vehicle Acoustic ANC,In-Cabin Sound Pressure Level (SPL) Attenuation,N/A,NOT MEASURED,"Requires physical error microphones, speakers, and vehicle field testing"

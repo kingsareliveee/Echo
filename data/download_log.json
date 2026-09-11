@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-09T22:28:13.753739",
+  "datasets": {
+    "Baseline": {
+      "dataset": "EchoShield_Baseline",
+      "license": "Internal DRDO / Open Domain",
+      "status": "AVAILABLE",
+      "clips_found": 3,
+      "files": [
+        "tank.wav",
+        "heli.wav",
+        "gun_fight.wav"
+      ]
+    },
+    "ESC-50": {
+      "dataset": "ESC-50",
+      "license": "CC BY-NC 4.0",
+      "status": "AVAILABLE",
+      "clips_found": 2000,
+      "path": "C:\\Users\\anuj\\Music\\echo_shield\\data\\ESC-50-master",
+      "citation": "Piczak, K.J. (2015). ESC: Dataset for Environmental Sound Classification. ACM Multimedia."
+    },
+    "UrbanSound8K": {
+      "dataset": "UrbanSound8K",
+      "license": "Research & Academic Use (Mixed CC per clip in metadata)",
+      "status": "SKIPPED_MANUAL_REQUIRED",
+      "clips_found": 0,
+      "path": "C:\\Users\\anuj\\Music\\echo_shield\\data\\UrbanSound8K",
+      "citation": "Salamon, J., Jacoby, C., Bello, J.P. (2014). A Dataset and Taxonomy for Urban Sound Research. ACM Multimedia."
+    },
+    "FSD50K": {
+      "dataset": "FSD50K",
+      "license": "CC-BY (Dataset as a whole; clip-level CC0/CC-BY/CC-BY-NC)",
+      "status": "SKIPPED_BULK_SIZE",
+      "clips_found": 0,
+      "path": "C:\\Users\\anuj\\Music\\echo_shield\\data\\FSD50K",
+      "citation": "Fonseca et al. (2022). FSD50K: An Open Dataset of Human-Labeled Sound Events. IEEE/ACM TASLP."
+    }
+  }
+}

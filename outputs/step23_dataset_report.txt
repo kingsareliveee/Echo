@@ -1,0 +1,102 @@
+======================================================================
+ECHO SHIELD -- Step 23: Speech Enhancement Dataset Report
+PS ID: SIH26052 | DRDO | SIH 2026
+======================================================================
+Generated : 2026-09-10 15:01:09
+Elapsed   : 30.3 s
+Target SR : 16000 Hz
+Clip dur  : 4.0 s
+SNR range : [-5.0, 0.0, 5.0, 10.0, 15.0] dB
+Seed      : 42
+
+----------------------------------------------------------------------
+CLEAN SPEECH STATUS
+----------------------------------------------------------------------
+  Clean speech files : 2317
+  Total duration     : 7212.5 s (120.2 min)
+
+----------------------------------------------------------------------
+NOISE CATALOGUE
+----------------------------------------------------------------------
+  Total noise sources : 129
+    CORE                : 29 files
+    PROXY               : 100 files
+
+  Role definitions:
+    CORE         -- project's own defence recordings
+    PROXY        -- public environmental sounds with similar acoustics
+    ENVIRONMENTAL-- general environmental sounds (experimental)
+
+  DISCLAIMER: ESC-50 is a public environmental-sound dataset.
+  It is NOT a defence dataset. Proxy/Environmental labels are used
+  for training generalisation ONLY.
+
+----------------------------------------------------------------------
+DATASET SUMMARY
+----------------------------------------------------------------------
+  Total pairs          : 3870
+  Unique clean files   : 3870
+  Unique noisy files   : 3870
+  Total audio (noisy)  : 15480 s (4.300 h)
+  Sample rate          : 16000 Hz
+  Clip duration        : 4.0 s
+
+  Split distribution:
+    test      :  1290 pairs (5160 s)
+    train     :  1290 pairs (5160 s)
+    val       :  1290 pairs (5160 s)
+
+  SNR distribution (requested):
+     -5.0 dB :  774 pairs
+     +0.0 dB :  774 pairs
+     +5.0 dB :  774 pairs
+    +10.0 dB :  774 pairs
+    +15.0 dB :  774 pairs
+
+  Noise type distribution:
+    IMPULSIVE           :   930 pairs
+    NON_STATIONARY      :  1710 pairs
+    STATIONARY          :  1230 pairs
+
+  Mean clipping %      : 0.0000%
+
+----------------------------------------------------------------------
+SNR VERIFICATION (re-read from disk)
+----------------------------------------------------------------------
+  pair_id                   req SNR    meas SNR    err
+  --------------------------------------------------------
+  test_001041                +0.0 dB    +0.00 dB    0.00 dB  OK
+  val_003019                +15.0 dB   +15.00 dB    0.00 dB  OK
+  val_002895                 -5.0 dB    -5.00 dB    0.00 dB  OK
+  train_000121               +0.0 dB    -0.00 dB    0.00 dB  OK
+  val_003168                +10.0 dB   +10.00 dB    0.00 dB  OK
+  train_000993              +10.0 dB   +10.00 dB    0.00 dB  OK
+  test_003535                -5.0 dB    -5.00 dB    0.00 dB  OK
+  train_002464              +15.0 dB   +15.00 dB    0.00 dB  OK
+  val_000672                 +5.0 dB    +5.00 dB    0.00 dB  OK
+  val_002867                 +5.0 dB    +5.00 dB    0.00 dB  OK
+
+----------------------------------------------------------------------
+DATA LEAKAGE ASSESSMENT
+----------------------------------------------------------------------
+  OK  No leakage: train and test speech files are disjoint.
+  Available clean speech files: 2317
+
+----------------------------------------------------------------------
+FILES CREATED
+----------------------------------------------------------------------
+  Dataset root : data/speech_dataset/
+  Metadata CSV : data/speech_dataset/metadata.csv
+  This report  : outputs/step23_dataset_report.txt
+
+----------------------------------------------------------------------
+NEXT STEPS (in order)
+----------------------------------------------------------------------
+  1. Add clean speech WAVs to   data/clean_speech/
+  2. Re-run this script:         python audio_lab/step23_build_speech_dataset.py
+  3. Review outputs/step23_dataset_report.txt
+  4. ONLY after SNR verification passes -> proceed to Step 24 (model training)
+  5. Minimum ~50 speech files recommended before training
+
+  ENGINEERING PRINCIPLE: Correct dataset first. Model second.
+======================================================================

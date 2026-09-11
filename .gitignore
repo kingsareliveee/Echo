@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+
+# Large raw datasets and archives (downloadable via scripts)
+*.zip
+*.tar.gz
+*.tar.bz2
+cmu_us_bdl_arctic/
+data/ESC-50-master.zip
+data/ESC-50-master/
+data/clean_speech/
+data/speech_dataset/
+data/processed/
+data/*.npy
+audio_lab/data/
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

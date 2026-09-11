@@ -1,0 +1,7 @@
+dataset_version,model_name,val_accuracy,val_macro_f1,val_precision,val_recall,latency_ms,train_time_sec
+Version A: ALL RETAINED,Decision Tree,70.0,0.706,0.7054,0.7156,0.103,0.41
+Version A: ALL RETAINED,Random Forest,76.31,0.7672,0.7667,0.7784,33.269,1.84
+Version A: ALL RETAINED,MLP (Neural Net),77.46,0.7781,0.7755,0.787,0.201,11.03
+Version B: CORE + PROXY ONLY,Decision Tree,75.1,0.7555,0.7662,0.7651,0.104,0.31
+Version B: CORE + PROXY ONLY,Random Forest,77.24,0.7761,0.7969,0.7901,32.812,1.5
+Version B: CORE + PROXY ONLY,MLP (Neural Net),78.93,0.7938,0.8076,0.8059,0.223,6.4

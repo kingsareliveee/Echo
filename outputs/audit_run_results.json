@@ -1,0 +1,272 @@
+[
+  {
+    "step_id": "Step 01",
+    "script": "audio_lab/step01_load_audio.py",
+    "description": "Audio Loading & Normalization",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.13,
+    "stdout": "=================================================================\n  ECHO SHIELD - Step 01: Audio Inspection & Waveform Generator\n=================================================================\nFile Path           : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate         : 44100 Hz\nTotal Samples       : 88,200\nChannels            : 1 (Mono)\nAudio Data Type     : int16\nDuration            : 2.000 seconds\nMin Sample Value    : -32766\nMax Sample Value    : 32766\n-----------------------------------------------------------------\n[SUCCESS] Waveform saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\test_waveform.png\n=================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 02",
+    "script": "audio_lab/step02_fft.py",
+    "description": "FFT & Spectral Frequency Analysis",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 1.6,
+    "stdout": "=================================================================\n  ECHO SHIELD - Step 02: FFT Frequency Spectrum Analyzer\n=================================================================\nFile Path           : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate         : 44100 Hz\nTotal Samples (N)   : 88,200\nDuration            : 2.000 seconds\nChannels in File    : 1\nChannel Analyzed    : Mono (Single Channel)\nDominant Frequency  : 440.00 Hz\nDominant Magnitude  : 32766.35\n-----------------------------------------------------------------\n[NOTE] The dominant frequency is simply the strongest individual frequency\n       component detected in this basic FFT. It is not necessarily the entire\n       noise profile or sole interference source.\n-----------------------------------------------------------------\n[SUCCESS] Frequency spectrum saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\test_fft.png\n=================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 03",
+    "script": "audio_lab/step03_spectrogram.py",
+    "description": "STFT Spectrogram Generation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 3.06,
+    "stdout": "=================================================================\n  ECHO SHIELD - Step 03: STFT Spectrogram Analyzer\n=================================================================\nFile Path           : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate         : 44100 Hz\nTotal Samples (N)   : 88,200\nDuration            : 2.000 seconds\nChannels in File    : 1\nChannel Analyzed    : Mono (Single Channel)\n-----------------------------------------------------------------\n[SUCCESS] Spectrogram saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\test_spectrogram.png\n=================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 04",
+    "script": "audio_lab/step04_features.py",
+    "description": "Global Acoustic Feature Extraction",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 0.63,
+    "stdout": "============================================================\nECHO SHIELD - Step 04: Audio Feature Extraction\n============================================================\nFile Path       : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate     : 44100 Hz\nDuration        : 2.000 seconds\nChannels        : 1\nChannel Analyzed: Channel 1\n\n--- Features ---\nRMS Energy        : 23169.3082\nZero Crossing Rate: 0.019944\nSpectral Centroid : 443.72 Hz\nSpectral Rolloff  : 440.00 Hz\n\n--- Band Energy ---\n0-500 Hz        : 32766.5563\n500-2000 Hz     : 1.0173\n2000-5000 Hz    : 1.7730\n5000-10000 Hz   : 2.6457\n============================================================\n\n[SUCCESS] Extracted features saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\test_features.csv\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 05",
+    "script": "audio_lab/step05_window_features.py",
+    "description": "Sliding-Window Feature Extraction",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 0.61,
+    "stdout": "============================================================\nECHO SHIELD - Step 05: Windowed Feature Extraction\n============================================================\nFile Path        : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate      : 44100 Hz\nDuration         : 2.000 seconds\nChannels         : 1\nChannel Analyzed : Channel 1 (Mono)\nWindow Duration  : 100 ms (4410 samples)\nHop Duration     : 50 ms (2205 samples)\nNumber of Windows: 39\n------------------------------------------------------------\nFirst 5 windows:\nIdx  Start(s)  End(s)   RMS        ZCR       Centroid(Hz)  Rolloff(Hz) \n0    0.000     0.100    23169.31   0.0197    443.7         440.0       \n1    0.050     0.150    23169.31   0.0197    443.7         440.0       \n2    0.100     0.200    23169.31   0.0197    443.7         440.0       \n3    0.150     0.250    23169.31   0.0197    443.7         440.0       \n4    0.200     0.300    23169.31   0.0197    443.7         440.0       \n============================================================\n\n[ SUCCESS ] Windowed features saved to:\n  --> C:\\Users\\anuj\\Music\\echo_shield\\outputs\\test_window_features.csv\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 06",
+    "script": "audio_lab/step06_build_dataset.py",
+    "description": "Classifier Dataset Construction",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 0.1,
+    "stdout": "============================================================\nECHO SHIELD - Step 06: ML Dataset Builder\n============================================================\n\nInput files:\n- tank_window_features.csv -> label=tank\n- heli_window_features.csv -> label=helicopter\n- gun_fight_window_features.csv -> label=gun_fight\n\nRows per class:\ntank        : 98\nhelicopter  : 548\ngun_fight   : 803\n\nTotal rows  : 1,449\n------------------------------------------------------------\nFirst 5 dataset rows:\nIdx  Start(s)  End(s)   RMS        ZCR       Centroid(Hz)  Rolloff(Hz)  Label       \n0    0.0       0.1      5924.73    0.0523    1569.9        2740.0       tank        \n1    0.05      0.15     7376.78    0.0179    2060.2        3830.0       tank        \n2    0.1       0.2      8513.13    0.0173    2223.9        4830.0       tank        \n3    0.15      0.25     9481.11    0.0229    1984.8        4160.0       tank        \n4    0.2       0.3      9654.61    0.0175    2518.0        5900.0       tank        \n============================================================\n\n[ SUCCESS ] Dataset saved to:\n  --> C:\\Users\\anuj\\Music\\echo_shield\\outputs\\noise_dataset.csv\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 07",
+    "script": "audio_lab/step07_train_classifier.py",
+    "description": "Decision Tree Noise Classifier Training",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.46,
+    "stdout": "============================================================\nECHO SHIELD - Step 07: Noise Classifier\n============================================================\n\nDataset rows : 1,449\nFeatures     : 8\nClasses      : gun_fight, helicopter, tank\n\nTraining rows: 1,159\nTesting rows : 290\n------------------------------------------------------------\n\nTest Accuracy: 98.97%\n------------------------------------------------------------\n\n[Classification Report]\n              precision    recall  f1-score   support\n\n   gun_fight       1.00      0.99      0.99       161\n  helicopter       1.00      0.99      1.00       110\n        tank       0.86      1.00      0.93        19\n\n    accuracy                           0.99       290\n   macro avg       0.95      0.99      0.97       290\nweighted avg       0.99      0.99      0.99       290\n\n[Confusion Matrix]\nActual \\ Predicted |   gun_fight |  helicopter |        tank\n------------------------------------------------------------\ngun_fight          |         159 |           0 |           2\nhelicopter         |           0 |         109 |           1\ntank               |           0 |           0 |          19\n------------------------------------------------------------\nClass names: ['gun_fight', 'helicopter', 'tank']\n------------------------------------------------------------\n\n[ SUCCESS ] Model trained and saved to:\n  --> C:\\Users\\anuj\\Music\\echo_shield\\outputs\\noise_classifier.joblib\n\n[ SUCCESS ] Reloaded model verified.\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 08",
+    "script": "audio_lab/step08_predict_noise.py",
+    "description": "Single File Majority-Vote Prediction",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.51,
+    "stdout": "============================================================\nECHO SHIELD - Step 08: Noise Prediction Demo\n============================================================\n\n[INFO] No input WAV file specified. Using default: data/test.wav\nUsage: python audio_lab/step08_predict_noise.py <path_to_wav_file>\n\nFile            : C:\\Users\\anuj\\Music\\echo_shield\\data\\test.wav\nSample Rate     : 44100 Hz\nDuration        : 2.000 seconds\nChannels        : 1 (Channel 1 (Mono))\nWindows analyzed: 39\n------------------------------------------------------------\nWindow Predictions (First 10 windows):\nWindow  0 [0.00s - 0.10s] -> helicopter\nWindow  1 [0.05s - 0.15s] -> helicopter\nWindow  2 [0.10s - 0.20s] -> helicopter\nWindow  3 [0.15s - 0.25s] -> helicopter\nWindow  4 [0.20s - 0.30s] -> helicopter\nWindow  5 [0.25s - 0.35s] -> helicopter\nWindow  6 [0.30s - 0.40s] -> helicopter\nWindow  7 [0.35s - 0.45s] -> helicopter\nWindow  8 [0.40s - 0.50s] -> helicopter\nWindow  9 [0.45s - 0.55s] -> helicopter\n... (29 additional windows evaluated)\n\n============================================================\nOverall Prediction: helicopter\n============================================================\n\nClass Distribution Across Windows:\ngun_fight     :    0 windows (  0.0%)\nhelicopter    :   39 windows (100.0%)\ntank          :    0 windows (  0.0%)\n\n------------------------------------------------------------\nAverage model probability across windows (Diagnostic):\n------------------------------------------------------------\ngun_fight     :   0.0%\nhelicopter    : 100.0%\ntank          :   0.0%\n------------------------------------------------------------\nNote: Probabilities represent average leaf distribution across\n      all windows, not a guaranteed confidence score.\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 09",
+    "script": "audio_lab/step09_batch_predict.py",
+    "description": "Batch Prediction Across Audio Files",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.69,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 09: Batch Audio Prediction & Comparison\n===========================================================================\n\n----------------------------------------------------------------------------------------\nFilename       | Duration  | Rate(Hz) | Windows | Overall Pred | GunFight% | Heli%   | Tank% \n----------------------------------------------------------------------------------------\ntank.wav       |   4.99 s   |    48000 |      98 | tank         |      0.0% |    2.0% |  98.0%\nheli.wav       |  27.48 s   |    48000 |     548 | helicopter   |      0.0% |   98.7% |   1.3%\ngun_fight.wav  |  40.20 s   |    24000 |     803 | gun_fight    |     99.6% |    0.1% |   0.2%\ntest.wav       |   2.00 s   |    44100 |      39 | helicopter   |      0.0% |  100.0% |   0.0%\n----------------------------------------------------------------------------------------\n\n[NOTE] These are model predictions, not measured real-world classification accuracy.\n========================================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 10",
+    "script": "audio_lab/step10_noise_profile.py",
+    "description": "Noise Profile Lookup & Mapping",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.83,
+    "stdout": "======================================================================\n  ECHO SHIELD - Step 10: Prototype Noise Profile Selector\n======================================================================\n\n------------------------------------------------------------\nFile              : tank.wav\nNoise Class       : tank\nProcessing Profile: LOW_FREQ_MECHANICAL_PROFILE\nReason            : Low-frequency mechanical noise profile\n\n------------------------------------------------------------\nFile              : heli.wav\nNoise Class       : helicopter\nProcessing Profile: LOW_FREQ_TONAL_PROFILE\nReason            : Low-frequency and tonal noise profile\n\n------------------------------------------------------------\nFile              : gun_fight.wav\nNoise Class       : gun_fight\nProcessing Profile: IMPULSIVE_PROFILE\nReason            : Transient/impulsive noise profile\n\n------------------------------------------------------------\nFile              : test.wav\nNoise Class       : helicopter\nProcessing Profile: LOW_FREQ_TONAL_PROFILE\nReason            : Low-frequency and tonal noise profile\n\n======================================================================\nSYSTEM EXPLANATION & ARCHITECTURAL WORKFLOW:\n======================================================================\n1. Noise Classification : ML model identifies dominant acoustic environment.\n2. Noise Profile Mapping: Maps class to high-level DSP handling strategy.\n3. Future DSP/ANC Hook  : Guides future parameter selection (e.g. filter\n                          order, step size mu, notch frequencies, or transient\n                          suppression thresholds) in the upcoming DSP pipeline.\n======================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 11",
+    "script": "audio_lab/step11_dsp_config.py",
+    "description": "Adaptive DSP Parameter Configuration",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.66,
+    "stdout": "======================================================================\n  ECHO SHIELD - Step 11: Automated DSP Configuration Generator\n======================================================================\n\n------------------------------------------------------------\nFile            : tank.wav\nNoise Class     : tank\nNoise Profile   : LOW_FREQ_MECHANICAL_PROFILE\nFilter Length   : 32\nStep Size (mu)  : 0.005\nProcessing Mode : LOW_FREQUENCY_ADAPTIVE\n\n------------------------------------------------------------\nFile            : heli.wav\nNoise Class     : helicopter\nNoise Profile   : LOW_FREQ_TONAL_PROFILE\nFilter Length   : 32\nStep Size (mu)  : 0.003\nProcessing Mode : LOW_FREQ_TONAL_ADAPTIVE\n\n------------------------------------------------------------\nFile            : gun_fight.wav\nNoise Class     : gun_fight\nNoise Profile   : IMPULSIVE_PROFILE\nFilter Length   : 32\nStep Size (mu)  : 0.001\nProcessing Mode : IMPULSIVE_PROTECTION\n\n------------------------------------------------------------\nFile            : test.wav\nNoise Class     : helicopter\nNoise Profile   : LOW_FREQ_TONAL_PROFILE\nFilter Length   : 32\nStep Size (mu)  : 0.003\nProcessing Mode : LOW_FREQ_TONAL_ADAPTIVE\n\n======================================================================\nARCHITECTURAL FLOW:\nML classification -> Noise Profile -> DSP Configuration\n----------------------------------------------------------------------\nThese parameters are prototype starting values for experimentation,\nnot measured optimal ANC parameters.\n======================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 12",
+    "script": "audio_lab/step12_lms_filter.py",
+    "description": "Standard LMS Adaptive Filter Simulation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 3.24,
+    "stdout": "======================================================================\n  ECHO SHIELD - Step 12: LMS Adaptive Filter Prototype\n======================================================================\nFile Path           : C:\\Users\\anuj\\Music\\echo_shield\\data\\tank.wav\nSample Rate         : 48000 Hz\nNumber of Samples   : 239,616 (4.992 seconds)\nChannel             : Channel 1 of 2 (Stereo)\nFilter Length (Taps): 32\nStep Size (mu)      : 0.005\n----------------------------------------------------------------------\nInput Signal RMS    : 0.269343\nError Signal RMS    : 0.024983\nRMS Reduction       : 20.65 dB\n======================================================================\n[SUCCESS] LMS error audio saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\tank_lms_error.wav\n[SUCCESS] Waveform comparison plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\tank_lms_comparison.png\n----------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nLMS adaptive filtering is demonstrated here as a software DSP building block.\nFull FxLMS ANC requires a reference signal, secondary-path model, anti-noise\noutput, and acoustic/error feedback.\n======================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 13",
+    "script": "audio_lab/step13_lms_vs_nlms.py",
+    "description": "LMS vs Normalized LMS (NLMS) Comparison",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 4.72,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 13: LMS vs. NLMS Adaptive Filter Comparison\n===========================================================================\nFile Analyzed       : tank.wav\nSample Rate         : 48000 Hz (4.992 seconds)\nChannel Analyzed    : Channel 1 of 2 (Stereo)\nInput Signal RMS    : 0.269343\n---------------------------------------------------------------------------\nAlgorithm    | Filter Length | Step Size   | Error RMS    | RMS Reduction (dB)\n---------------------------------------------------------------------------\nLMS          | 32            | 0.0050      | 0.024983     |          20.65 dB\nNLMS         | 32            | 0.5000      | 0.007098     |          31.58 dB\n---------------------------------------------------------------------------\n\n[EXPERIMENT INTERPRETATION]\n1. Error Level : NLMS achieved a lower residual error RMS (0.007098 vs 0.024983, +10.93 dB better).\n2. Stability   : NLMS dynamically scales its step size by the input energy, making it inherently\n                 more robust against signal amplitude fluctuations and sudden acoustic bursts.\n3. Caveat      : These observations apply specifically to this recording configuration.\n                 Universal conclusions should not be drawn from a single audio sample.\n---------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis is an offline DSP experiment. Results are recording-dependent and do not\nrepresent final physical ANC performance.\n===========================================================================\n\n[SUCCESS] Comparison plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step13_lms_vs_nlms.png\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 14",
+    "script": "audio_lab/step14_signal_model.py",
+    "description": "Primary Path & Desired Signal Modeling",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.08,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 14: Software ANC Signal Model\n===========================================================================\nFile Analyzed       : tank.wav\nSample Rate         : 48000 Hz\nNumber of Samples   : 239,616 (4.992 seconds)\nChannel Analyzed    : Channel 1 of 2 (Stereo)\n---------------------------------------------------------------------------\nReference Signal RMS: 0.269343\nDesired Signal RMS  : 0.269343\n---------------------------------------------------------------------------\n\n[SIGNAL MODEL DEFINITION & FLOW]\n1. Reference Microphone -> x[n] : Senses noise close to acoustic source (e.g. engine bay).\n2. Desired Signal        -> d[n] : Primary noise propagating toward vehicle crew/cabin.\n3. Residual Error        -> e[n] : e[n] = d[n] - y_sec[n] (Acoustic cancellation at ear).\n---------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis is a simplified software simulation model, NOT a physical microphone arrangement.\nNo physical acoustic cancellation is occurring here.\n===========================================================================\n[SUCCESS] Signal model plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step14_signals.png\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 15",
+    "script": "audio_lab/step15_secondary_path.py",
+    "description": "Synthetic S(z) Secondary Path Modeling",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.78,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 15: Secondary Path Model S(z)\n===========================================================================\nSecondary Path FIR Length: 12 taps\nAcoustic Delay          : 2 samples (0.042 ms)\nInput Signal RMS        : 0.269343\nSecondary Output RMS    : 0.214036\n---------------------------------------------------------------------------\n\n[WHY FxLMS NEEDS SECONDARY PATH MODEL S_hat(z)]\n1. Phase Alignment : Physical speakers and acoustic paths introduce phase shifts.\n2. Filtered-X Rule : Filtering x[n] with S_hat(z) ensures weight gradient updates\n                     point in the true direction of minimum acoustic error.\n---------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis secondary-path model is a synthetic software FIR template.\nIt is NOT measured hardware data and does NOT represent the final vehicle cabin.\n===========================================================================\n[SUCCESS] Secondary-path plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step15_secondary_path.png\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 16",
+    "script": "audio_lab/step16_fxlms.py",
+    "description": "Filtered-X LMS (FxLMS) Algorithm Simulation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 4.24,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 16: Filtered-X LMS (FxLMS) Algorithm\n===========================================================================\nFile Analyzed             : tank.wav\nSample Rate               : 48000 Hz (4.992 seconds)\nAdaptive Filter Taps (L)  : 32\nStep Size (mu)            : 0.0005\nSecondary Path Taps (M)   : 12\n---------------------------------------------------------------------------\nInput Signal RMS          : 0.269343\nResidual Error RMS        : 0.068500\nSimulated RMS Reduction   : 11.89 dB\n===========================================================================\n[SUCCESS] FxLMS residual error audio saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\tank_fxlms_error.wav\n[SUCCESS] FxLMS comparison plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step16_fxlms.png\n---------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis is a simplified software simulation demonstrating the FxLMS algorithm.\nIt does NOT represent physical in-vehicle acoustic cancellation.\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 17",
+    "script": "audio_lab/step17_anc_simulation.py",
+    "description": "Complete Offline ANC Acoustic Simulation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 4.3,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 17: Offline ANC Simulation\n===========================================================================\nFile Analyzed           : tank.wav\nDuration                : 4.992 seconds (239,616 samples)\nOriginal Signal RMS     : 0.269343\nResidual (Error) RMS    : 0.068500\nSimulated RMS Reduction : 11.89 dB\n---------------------------------------------------------------------------\nSIMULATION ONLY \u2014 secondary path is synthetic and not measured hardware data.\n===========================================================================\n[SUCCESS] Original audio saved to : C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step17_anc_original.wav\n[SUCCESS] Residual audio saved to : C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step17_anc_residual.wav\n[SUCCESS] Simulation plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step17_anc_simulation.png\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 18",
+    "script": "audio_lab/step18_wavelet_reconstruction.py",
+    "description": "Daubechies-4 (db4) Wavelet Denoising",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 2.29,
+    "stdout": "===========================================================================\n  ECHO SHIELD - Step 18: Wavelet Denoising & Reconstruction\n===========================================================================\nFile Analyzed           : tank.wav\nWavelet Used            : DB4 (Decomposition Level = 5)\nComputed Noise Sigma    : 0.002068\nSoft Threshold (T)      : 0.010291\n---------------------------------------------------------------------------\nInput Signal RMS        : 0.269343\nDenoised Signal RMS     : 0.268670\nMagnitude Modification  : 0.02 dB\n---------------------------------------------------------------------------\n[ARCHITECTURAL EXPLANATION]\nWavelet denoising -> suppresses high-entropy noise sub-bands -> reconstructs signal.\n\n[IMPORTANT DISCLAIMER]\nThis is a signal-processing demonstration.\nIt does NOT prove improved speech intelligibility unless evaluated with actual\nspeech recordings and standardized objective metrics (e.g. STOI/PESQ).\n===========================================================================\n[SUCCESS] Denoised audio saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\tank_wavelet_denoised.wav\n[SUCCESS] Wavelet comparison plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step18_wavelet_comparison.png\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 19",
+    "script": "audio_lab/step19_full_pipeline.py",
+    "description": "Dual-Pipeline Software Integration",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 6.92,
+    "stdout": "================================================================================\n  ECHO SHIELD - Step 19: Full Dual-Pipeline Software Integration\n================================================================================\n\n[FILE: tank.wav]\n  Noise Class       : tank\n  Noise Profile     : LOW_FREQ_MECHANICAL_PROFILE\n  DSP Processing    : LOW_FREQUENCY_ADAPTIVE (Taps=32, mu=0.005)\n  ML Distribution   : gun_fight: 0.0%, helicopter: 2.0%, tank: 98.0%\n\n[FILE: heli.wav]\n  Noise Class       : helicopter\n  Noise Profile     : LOW_FREQ_TONAL_PROFILE\n  DSP Processing    : LOW_FREQ_TONAL_ADAPTIVE (Taps=32, mu=0.003)\n  ML Distribution   : gun_fight: 0.0%, helicopter: 98.7%, tank: 1.3%\n\n[FILE: gun_fight.wav]\n  Noise Class       : gun_fight\n  Noise Profile     : IMPULSIVE_PROFILE\n  DSP Processing    : IMPULSIVE_PROTECTION (Taps=32, mu=0.001)\n  ML Distribution   : gun_fight: 99.6%, helicopter: 0.1%, tank: 0.2%\n\n[FILE: test.wav]\n  Noise Class       : helicopter\n  Noise Profile     : LOW_FREQ_TONAL_PROFILE\n  DSP Processing    : LOW_FREQ_TONAL_ADAPTIVE (Taps=32, mu=0.003)\n  ML Distribution   : gun_fight: 0.0%, helicopter: 100.0%, tank: 0.0%\n--------------------------------------------------------------------------------\n[DETAILED DUAL-PATH METRICS FOR tank.wav]\n  Input Original RMS          : 0.269343\n  ANC Path (FxLMS Error RMS)  : 0.068500 (Simulated Reduction: 11.89 dB)\n  Comm Path (Wavelet Out RMS) : 0.268670\n================================================================================\nARCHITECTURAL FLOW:\nCommon Front-End (Features + ML) -> Noise Profile & DSP Configuration\n  |-- 1. Communication Path : Adaptive Noise Suppression + Wavelet Reconstruction\n  \\-- 2. Active Noise Path  : Reference Sensor -> FxLMS -> Secondary Path -> Error\n--------------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis integrated pipeline connects all software algorithms for offline experimentation.\nIt does not operate physical microphone hardware or real-time FPGA chips.\n================================================================================\n[SUCCESS] Dual-pipeline integration plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step19_full_pipeline.png\n================================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 20",
+    "script": "audio_lab/step20_evaluation.py",
+    "description": "Quantitative Metrics & Performance Evaluation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 1.53,
+    "stdout": "================================================================================\n  ECHO SHIELD - Step 20: Performance Evaluation & Validation Table\n================================================================================\nModule                               | Metric                                 | Value        | Type                        \n--------------------------------------------------------------------------------------------------------------------------\nML Noise Classifier (Decision Tree)  | Classification Accuracy (Held-out Test Split) | 98.97%       | MODEL TEST                  \nML Noise Classifier (Decision Tree)  | Macro F1-Score                         | 0.97         | MODEL TEST                  \nDSP Adaptive Filter (Standard LMS)   | RMS Noise Reduction (tank.wav)         | 20.65 dB     | MEASURED SOFTWARE EXPERIMENT\nDSP Adaptive Filter (Normalized LMS) | RMS Noise Reduction (tank.wav)         | 31.58 dB     | MEASURED SOFTWARE EXPERIMENT\nActive Noise Cancellation (FxLMS)    | Simulated Acoustic Error Reduction (tank.wav) | 11.89 dB     | SIMULATION                  \nSpeech Path (Wavelet Denoising)      | Signal RMS Attenuation (db4, Level 5)  | 0.02 dB      | MEASURED SOFTWARE EXPERIMENT\nEmbedded Hardware FPGA Processing    | Physical Latency & Power Consumption   | N/A          | NOT MEASURED                \nPhysical Vehicle Acoustic ANC        | In-Cabin Sound Pressure Level (SPL) Attenuation | N/A          | NOT MEASURED                \n--------------------------------------------------------------------------------------------------------------------------\n\n[IMPORTANT SCIENTIFIC INTEGRITY STATEMENT]\n- We do NOT combine unrelated metrics into a single arbitrary 'system score'.\n- Hardware metrics (latency, power, FPGA utilization) and physical acoustics (SPL reduction)\n  are explicitly categorized as NOT MEASURED until verified on physical testbenches.\n================================================================================\n\n[SUCCESS] Performance metrics saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step20_evaluation.csv\n[SUCCESS] Performance chart saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step20_evaluation.png\n================================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 21",
+    "script": "audio_lab/step21_fixed_point_prep.py",
+    "description": "Q1.15 Fixed-Point Arithmetic Analysis",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 0.68,
+    "stdout": "================================================================================\n  ECHO SHIELD - Step 21: Fixed-Point (Q1.15) DSP Hardware Preparation\n================================================================================\nParameter              | Index | Original Float  | Q1.15 Int  | Recon Float     | Abs Error   \n------------------------------------------------------------------------------------------\nStep Size (mu)         | N/A   |       0.005000 |       164 |       0.005005 |  0.00000488\nFilter Weight w[k]     | 0     |      -0.087822 |     -2878 |      -0.087830 |  0.00000767\nFilter Weight w[k]     | 1     |       0.315500 |     10338 |       0.315491 |  0.00000929\nFilter Weight w[k]     | 2     |       0.162396 |      5321 |       0.162384 |  0.00001173\nFilter Weight w[k]     | 3     |       0.069061 |      2263 |       0.069061 |  0.00000034\nFilter Weight w[k]     | 4     |      -0.240787 |     -7890 |      -0.240784 |  0.00000326\nFilter Weight w[k]     | 5     |      -0.240804 |     -7891 |      -0.240814 |  0.00001037\nFilter Weight w[k]     | 6     |      -0.309341 |    -10137 |      -0.309357 |  0.00001522\nFilter Weight w[k]     | 7     |       0.256323 |      8399 |       0.256317 |  0.00000616\nFilter Weight w[k]     | 8     |       0.070781 |      2319 |       0.070770 |  0.00001024\n... (additional rows saved in CSV)\n------------------------------------------------------------------------------------------\n\n[QUANTIZATION STATISTICS]\n  Theoretical Q1.15 Resolution (1 LSB) : 0.00003052\n  Max Absolute Quantization Error      : 0.00001522\n  Mean Absolute Quantization Error     : 0.00000630\n------------------------------------------------------------------------------------------\n\n[WHY FIXED-POINT (Q1.15) IS CRITICAL FOR FPGA ANC]\n1. Ultra-Low Latency   : Hardware multipliers complete in 1 FPGA clock cycle (< 10 ns).\n2. Resource Efficiency : Uses standard 16-bit DSP48 slices without bulky FPUs.\n3. Determinism         : Fixed bit-width ensures exact bit-level reproducibility.\n------------------------------------------------------------------------------------------\n[IMPORTANT DISCLAIMER]\nThis is a fixed-point numerical quantization preparation script.\nIt does NOT generate Verilog/VHDL RTL and does NOT report FPGA synthesis timing.\n================================================================================\n\n[SUCCESS] Q1.15 quantization analysis saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step21_q15_analysis.csv\n================================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 22",
+    "script": "audio_lab/step22_final_demo.py",
+    "description": "End-to-End Terminal Demo & Verification",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 7.79,
+    "stdout": "\n============================================================\nECHO SHIELD - SOFTWARE PROTOTYPE FINAL DEMO\n============================================================\nInput           : tank.wav (4.99s, 48000 Hz)\nNoise Class     : tank\nNoise Profile   : LOW_FREQ_MECHANICAL_PROFILE\nDSP Mode        : LOW_FREQUENCY_ADAPTIVE\n\nML:\nPrediction      : tank (98.0% majority confidence)\n\nDSP:\nFilter Length   : 32 Taps\nStep Size       : mu = 0.005\n\nAdaptive Filtering:\nLMS Result      : RMS = 0.024983 (Reduction: 20.65 dB)\nNLMS Result     : RMS = 0.007098 (Reduction: 31.58 dB)\n\nFxLMS Simulation:\nOriginal RMS    : 0.269343\nResidual RMS    : 0.068500\nSimulated RMS Reduction: 11.89 dB\n\nWavelet:\nDenoising Output: RMS = 0.268670 (db4 Soft Threshold, Level 5)\n\n============================================================\nIMPORTANT:\nThis final demo validates the software/algorithmic pipeline only.\nPhysical ANC performance requires microphone/ADC/DAC/speaker/error-microphone\nhardware and a measured secondary path.\n============================================================\n\n[SUCCESS] Final demo visualization saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\step22_final_demo.png\n============================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 23",
+    "script": "audio_lab/step23_build_speech_dataset.py",
+    "description": "Speech-in-Noise Paired Dataset Builder",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 32.55,
+    "stdout": "======================================================================\nEcho Shield -- Step 23: Build Speech Enhancement Dataset\nPS ID: SIH26052 | DRDO | SIH 2026\n======================================================================\n\n[1/7] Auditing existing data ...\n  Noise sources   : 129 files\n    CORE          : 29\n    PROXY         : 100\n    ENVIRONMENTAL : 0\n  Clean speech    : 2317 WAV files found\n\n[2/7] Splitting speech files at recording level ...\n  train     : 1622 speech file(s)\n  val       : 348 speech file(s)\n  test      : 347 speech file(s)\n\n[3/7] Generating noisy/clean pairs ...\n  Generated 3870 pairs.\n\n[4/7] Saving metadata.csv ...\n  Saved: data\\speech_dataset\\metadata.csv\n\n[5/7] SNR verification ...\n  Mean SNR error : 0.000 dB  (max: 0.000 dB)\n  OK: SNR math verified within acceptable tolerance.\n    test_001041               req= +0.0 dB  meas=+0.00 dB\n    val_003019                req=+15.0 dB  meas=+15.00 dB\n    val_002895                req= -5.0 dB  meas=-5.00 dB\n    train_000121              req= +0.0 dB  meas=-0.00 dB\n    val_003168                req=+10.0 dB  meas=+10.00 dB\n\n[6/7] Writing report ...\n  Saved: outputs\\step23_dataset_report.txt\n\n[7/7] Final summary\n----------------------------------------------------------------------\n======================================================================\nECHO SHIELD -- Step 23: Speech Enhancement Dataset Report\nPS ID: SIH26052 | DRDO | SIH 2026\n======================================================================\nGenerated : 2026-09-10 15:01:09\nElapsed   : 30.3 s\nTarget SR : 16000 Hz\nClip dur  : 4.0 s\nSNR range : [-5.0, 0.0, 5.0, 10.0, 15.0] dB\nSeed      : 42\n\n----------------------------------------------------------------------\nCLEAN SPEECH STATUS\n----------------------------------------------------------------------\n  Clean speech files : 2317\n  Total duration     : 7212.5 s (120.2 min)\n\n----------------------------------------------------------------------\nNOISE CATALOGUE\n----------------------------------------------------------------------\n  Total noise sources : 129\n    CORE                : 29 files\n    PROXY               : 100 files\n\n  Role definitions:\n    CORE         -- project's own defence recordings\n    PROXY        -- public environmental sounds with similar acoustics\n    ENVIRONMENTAL-- general environmental sounds (experimental)\n\n  DISCLAIMER: ESC-50 is a public environmental-sound dataset.\n  It is NOT a defence dataset. Proxy/Environmental labels are used\n  for training generalisation ONLY.\n\n----------------------------------------------------------------------\nDATASET SUMMARY\n----------------------------------------------------------------------\n  Total pairs          : 3870\n  Unique clean files   : 3870\n  Unique noisy files   : 3870\n  Total audio (noisy)  : 15480 s (4.300 h)\n  Sample rate          : 16000 Hz\n  Clip duration        : 4.0 s\n\n  Split distribution:\n    test      :  1290 pairs (5160 s)\n    train     :  1290 pairs (5160 s)\n    val       :  1290 pairs (5160 s)\n\n  SNR distribution (requested):\n     -5.0 dB :  774 pairs\n     +0.0 dB :  774 pairs\n     +5.0 dB :  774 pairs\n    +10.0 dB :  774 pairs\n    +15.0 dB :  774 pairs\n\n  Noise type distribution:\n    IMPULSIVE           :   930 pairs\n    NON_STATIONARY      :  1710 pairs\n    STATIONARY          :  1230 pairs\n\n  Mean clipping %      : 0.0000%\n\n----------------------------------------------------------------------\nSNR VERIFICATION (re-read from disk)\n----------------------------------------------------------------------\n  pair_id                   req SNR    meas SNR    err\n  --------------------------------------------------------\n  test_001041                +0.0 dB    +0.00 dB    0.00 dB  OK\n  val_003019                +15.0 dB   +15.00 dB    0.00 dB  OK\n  val_002895                 -5.0 dB    -5.00 dB    0.00 dB  OK\n  train_000121               +0.0 dB    -0.00 dB    0.00 dB  OK\n  val_003168                +10.0 dB   +10.00 dB    0.00 dB  OK\n  train_000993              +10.0 dB   +10.00 dB    0.00 dB  OK\n  test_003535                -5.0 dB    -5.00 dB    0.00 dB  OK\n  train_002464              +15.0 dB   +15.00 dB    0.00 dB  OK\n  val_000672                 +5.0 dB    +5.00 dB    0.00 dB  OK\n  val_002867                 +5.0 dB    +5.00 dB    0.00 dB  OK\n\n----------------------------------------------------------------------\nDATA LEAKAGE ASSESSMENT\n----------------------------------------------------------------------\n  OK  No leakage: train and test speech files are disjoint.\n  Available clean speech files: 2317\n\n----------------------------------------------------------------------\nFILES CREATED\n----------------------------------------------------------------------\n  Dataset root : data/speech_dataset/\n  Metadata CSV : data/speech_dataset/metadata.csv\n  This report  : outputs/step23_dataset_report.txt\n\n----------------------------------------------------------------------\nNEXT STEPS (in order)\n----------------------------------------------------------------------\n  1. Add clean speech WAVs to   data/clean_speech/\n  2. Re-run this script:         python audio_lab/step23_build_speech_dataset.py\n  3. Review outputs/step23_dataset_report.txt\n  4. ONLY after SNR verification passes -> proceed to Step 24 (model training)\n  5. Minimum ~50 speech files recommended before training\n\n  ENGINEERING PRINCIPLE: Correct dataset first. Model second.\n======================================================================\n----------------------------------------------------------------------\n\nStep 23 complete in 30.3 s\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Step 24",
+    "script": "audio_lab/step24_speech_enhancement.py",
+    "description": "AI Speech Enhancement & Denoising Engine",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 1.57,
+    "stdout": "[*] Testing Step 24 Speech Enhancement Engine...\n[+] Enhancement Complete: Noise Attenuation = -0.70 dB\n[SUCCESS] Step 24 Speech Enhancement validated cleanly.\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Behavior Train",
+    "script": "audio_lab/train_behavior_classifier.py",
+    "description": "Expanded Multi-Class Behavior Classifier",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 95.31,
+    "stdout": "======================================================================\n  ECHO SHIELD (SIH 2026) \u2014 Dual-Version Behavioral Model Selection\n======================================================================\n\nDOMAIN GAP & DATASET CHARACTERIZATION NOTICE: ESC-50 is a public environmental sound dataset used to augment acoustic-behavioral pattern learning (stationary continuous noise, non-stationary dynamic modulation, and impulsive transients). It is NOT a military defence dataset, and no defence labels have been fabricated. Testing on these public recordings evaluates general acoustic generalization across diverse physical sound generation mechanisms, while final defence validation remains strictly anchored on authentic vehicle and ballistic recordings.\n\n\n======================================================================\n  TRAINING SUITE: VERSION A: ALL RETAINED\n  Train windows: 42,930 | Val windows: 8,910\n======================================================================\n--> Training Decision Tree on Version A: ALL RETAINED...\n    Val Accuracy : 70.00%\n    Macro F1     : 0.7060\n    Precision    : 0.7054 | Recall: 0.7156\n    Latency      : 0.103 ms/window (Train time: 0.41s)\n--> Training Random Forest on Version A: ALL RETAINED...\n    Val Accuracy : 76.31%\n    Macro F1     : 0.7672\n    Precision    : 0.7667 | Recall: 0.7784\n    Latency      : 33.269 ms/window (Train time: 1.84s)\n--> Training MLP (Neural Net) on Version A: ALL RETAINED...\n    Val Accuracy : 77.46%\n    Macro F1     : 0.7781\n    Precision    : 0.7755 | Recall: 0.7870\n    Latency      : 0.201 ms/window (Train time: 11.03s)\n\n======================================================================\n  TRAINING SUITE: VERSION B: CORE + PROXY ONLY\n  Train windows: 34,119 | Val windows: 7,623\n======================================================================\n--> Training Decision Tree on Version B: CORE + PROXY ONLY...\n    Val Accuracy : 75.10%\n    Macro F1     : 0.7555\n    Precision    : 0.7662 | Recall: 0.7651\n    Latency      : 0.104 ms/window (Train time: 0.31s)\n--> Training Random Forest on Version B: CORE + PROXY ONLY...\n    Val Accuracy : 77.24%\n    Macro F1     : 0.7761\n    Precision    : 0.7969 | Recall: 0.7901\n    Latency      : 32.812 ms/window (Train time: 1.50s)\n--> Training MLP (Neural Net) on Version B: CORE + PROXY ONLY...\n    Val Accuracy : 78.93%\n    Macro F1     : 0.7938\n    Precision    : 0.8076 | Recall: 0.8059\n    Latency      : 0.223 ms/window (Train time: 6.40s)\n\n[SAVED] Version A Best Model saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\noise_behavior_classifier_all.joblib\n[SAVED] Version B Best Model saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\noise_behavior_classifier_core_proxy.joblib\n[SAVED] Comprehensive comparison CSV: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\classifier_comparison.csv\n[SAVED] Comparison plot saved to: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\classifier_comparison.png\n======================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Behavior Eval",
+    "script": "audio_lab/evaluate_behavior_classifier.py",
+    "description": "Classifier Generalization Evaluation",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 4.21,
+    "stdout": "  [SAVED] Confusion matrix saved: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\confusion_matrix.png\n  [SAVED] Confusion matrix saved: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\confusion_matrix_core_proxy.png\n  [SAVED] Confusion matrix saved: C:\\Users\\anuj\\Music\\echo_shield\\outputs\\cm_modelA_on_coreproxy.png\n\n===========================================================================\n  ECHO SHIELD \u2014 Behavioral Noise Dataset Expansion Final Report\n===========================================================================\nDATASET CHARACTERIZATION & DOMAIN NOTICE:\n  DOMAIN GAP & DATASET CHARACTERIZATION NOTICE: ESC-50 is a public environmental sound dataset used to augment acoustic-behavioral pattern learning (stationary continuous noise, non-stationary dynamic modulation, and impulsive transients). It is NOT a military defence dataset, and no defence labels have been fabricated. Testing on these public recordings evaluates general acoustic generalization across diverse physical sound generation mechanisms, while final defence validation remains strictly anchored on authentic vehicle and ballistic recordings.\n\nACTUAL DATASET MEASURED METRICS (Counted, No Estimates):\n  Total source recordings        : 603\n  Total audio duration           : 0 hours 51 minutes 12 seconds (3072.67 s)\n  Total 100ms analysis windows   : 60,849\n\nACTUAL RECORDING-LEVEL SPLIT (Anti-Leakage Guaranteed):\n  TRAIN  | Recordings: 422 | Windows: 42,930 (Stat: 16,631, Non-Stat: 14,408, Imp: 11,891)\n  VAL    | Recordings: 90 | Windows: 8,910 (Stat: 3,564, Non-Stat: 2,970, Imp: 2,376)\n  TEST   | Recordings: 91 | Windows: 9,009 (Stat: 3,663, Non-Stat: 2,970, Imp: 2,376)\n\nVALIDATION SET ARCHITECTURE COMPARISON:\n  [Version A: ALL RETAINED] Decision Tree    | Acc=70.00% | F1=0.7060 | Prec=0.7054 | Rec=0.7156 | Lat=0.103ms\n  [Version A: ALL RETAINED] Random Forest    | Acc=76.31% | F1=0.7672 | Prec=0.7667 | Rec=0.7784 | Lat=33.269ms\n  [Version A: ALL RETAINED] MLP (Neural Net) | Acc=77.46% | F1=0.7781 | Prec=0.7755 | Rec=0.7870 | Lat=0.201ms\n  [Version B: CORE + PROXY ONLY] Decision Tree    | Acc=75.10% | F1=0.7555 | Prec=0.7662 | Rec=0.7651 | Lat=0.104ms\n  [Version B: CORE + PROXY ONLY] Random Forest    | Acc=77.24% | F1=0.7761 | Prec=0.7969 | Rec=0.7901 | Lat=32.812ms\n  [Version B: CORE + PROXY ONLY] MLP (Neural Net) | Acc=78.93% | F1=0.7938 | Prec=0.8076 | Rec=0.8059 | Lat=0.223ms\n\nFINAL UNSEEN RECORDING TEST EVALUATION:\n---------------------------------------------------------------------------\n  [VERSION A: ALL RETAINED] (MLP (Neural Net)) on ALL Unseen Test Recordings (9,009 windows):\n    \u2022 Test Accuracy   : 79.52%\n    \u2022 Macro F1        : 0.8019\n    \u2022 Macro Precision : 0.7991\n    \u2022 Macro Recall    : 0.8058\n    \u2022 Per-class breakdown:\n        - STATIONARY      : F1=0.7862 | Precision=0.8126 | Recall=0.7614\n        - NON_STATIONARY  : F1=0.7279 | Precision=0.7154 | Recall=0.7407\n        - IMPULSIVE       : F1=0.8918 | Precision=0.8693 | Recall=0.9154\n\n  [VERSION B: CORE + PROXY] (MLP (Neural Net)) on CORE+PROXY Unseen Recordings (7,227 windows):\n    \u2022 Test Accuracy   : 83.85%\n    \u2022 Macro F1        : 0.8394\n    \u2022 Macro Precision : 0.8396\n    \u2022 Macro Recall    : 0.8448\n    \u2022 Per-class breakdown:\n        - STATIONARY      : F1=0.7775 | Precision=0.8442 | Recall=0.7205\n        - NON_STATIONARY  : F1=0.8454 | Precision=0.8316 | Recall=0.8596\n        - IMPULSIVE       : F1=0.8953 | Precision=0.8431 | Recall=0.9543\n\n  [CROSS EVALUATION] Version A Model on CORE+PROXY Test Subset (7,227 windows):\n    \u2022 Test Accuracy   : 82.61%\n    \u2022 Macro F1        : 0.8320\n\nBASELINE vs. IMPROVED COMPARISON (on Unseen Recordings):\n---------------------------------------------------------------------------\n  BASELINE (3-File Classifier) : Acc = 26.37% | Macro F1 = 0.1391 | Prec = 0.0879 | Rec = 0.3333\n  IMPROVED (Version A: All)    : Acc = 79.52% | Macro F1 = 0.8019 | Prec = 0.7991 | Rec = 0.8058\n  IMPROVED (Version B: C+P)    : Acc = 83.85% | Macro F1 = 0.8394 | Prec = 0.8396 | Rec = 0.8448\n\n  EMPIRICAL DELTA GAIN ON UNSEEN DATA:\n    \u2022 Version A Gain over Baseline : +53.15% accuracy points\n    \u2022 Version B Gain over Baseline : +57.48% accuracy points\n\nREPRODUCIBILITY:\n  python audio_lab/preprocess_dataset.py\n  python audio_lab/build_behavior_dataset.py\n  python audio_lab/dataset_statistics.py\n  python audio_lab/train_behavior_classifier.py\n  python audio_lab/evaluate_behavior_classifier.py\n===========================================================================\n",
+    "stderr": ""
+  },
+  {
+    "step_id": "Smoke Test",
+    "script": "smoke_test.py",
+    "description": "Pipeline Smoke Test Harness",
+    "exit_code": 0,
+    "status": "WORKING",
+    "runtime_sec": 25.49,
+    "stdout": "======================================================================\n  Echo Shield \u2014 Pipeline Smoke Test\n======================================================================\n[OK]   Model loaded: DecisionTreeClassifier  classes=['gun_fight', 'helicopter', 'tank']\n----------------------------------------------------------------------\n[OK]   tank.wav        class=tank         LMS= 20.65 dB  NLMS= 31.58 dB  FxLMS= 10.96 dB  wavelet_level=5  anc_capped=True\n[OK]   heli.wav        class=helicopter   LMS= 27.37 dB  NLMS= 41.49 dB  FxLMS=  0.87 dB  wavelet_level=5  anc_capped=True\n[OK]   gun_fight.wav   class=gun_fight    LMS=  4.19 dB  NLMS=  6.92 dB  FxLMS=  0.44 dB  wavelet_level=5  anc_capped=True\n[OK]   test.wav        class=helicopter   LMS= 33.41 dB  NLMS= 61.95 dB  FxLMS= 22.50 dB  wavelet_level=5  anc_capped=True\n======================================================================\nAll files processed successfully.\n",
+    "stderr": ""
+  }
+]
